@@ -1,6 +1,8 @@
 package dao;
 
 import java.util.List;
+import javax.annotation.Resource;
+import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -13,21 +15,29 @@ public class AccountDAO implements AccountDAOLocal {
 
     @PersistenceContext(unitName = "TransactionsLab_2-ejbPU")
     private EntityManager em;
+    @Resource
+    private SessionContext sc;
+
+    @Override
+    public void flush() {
+        em.flush();
+    }
 
     @Override
     public void createAccount(Account account) {
         em.persist(account);
+    }
+    
+    @Override
+    public void createAccountWithRollback(Account account) {
+        em.persist(account);
+        sc.setRollbackOnly();
     }
 
     @Override
     public List<Account> getAllAccounts() {
         Query query = em.createQuery("SELECT a FROM Account a", Account.class);
         return query.getResultList();
-    }
-
-    @Override
-    public void removeAccount(Account account) {
-         em.remove(em.merge(account));
     }
 
     @Override

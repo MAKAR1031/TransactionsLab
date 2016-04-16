@@ -1,11 +1,15 @@
 package services;
 
+import java.util.List;
 import javax.ejb.Local;
 import models.Account;
-import models.BankAccount;
 
 @Local
 public interface AccountsServiceLocal {
-    void addAccountAndBankAccount(Account account);
-    void createBankAccount(BankAccount bankAccount);
+    List<Account> getAllAccounts();
+    void experiment1();
+    void experiment2();
+    void experiment3();
+    void experiment4();
+    void experiment5();
 }

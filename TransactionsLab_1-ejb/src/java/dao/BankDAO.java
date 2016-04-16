@@ -1,5 +1,6 @@
 package dao;
 
+import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,6 +13,11 @@ public class BankDAO implements BankDAOLocal {
     private EntityManager em;
 
     @Override
+    public void flush() {
+        em.flush();
+    }
+
+    @Override
     public BankAccount getBankAccountById(int id) {
         return em.find(BankAccount.class, id);
     }
@@ -22,7 +28,8 @@ public class BankDAO implements BankDAOLocal {
     }
 
     @Override
-    public void removeBankAccount(BankAccount account) {
-        em.remove(em.merge(account));
+    public void createBankAccountWithException(BankAccount account) {
+        em.persist(account);
+        throw new EJBException("Упс...");
     }
 }

@@ -1,12 +1,10 @@
 package controllers;
 
-import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import models.Account;
-import models.AccountStatus;
-import models.BankAccount;
 import services.AccountsServiceLocal;
 
 @Named
@@ -15,18 +13,28 @@ public class Controller {
 
     @EJB
     private AccountsServiceLocal accountsService;
+
+    public List<Account> getAllAccounts() {
+        return accountsService.getAllAccounts();
+    }
     
-    public String test() {
-        BankAccount bankAccount = new BankAccount();
-        bankAccount.setMoney(1000000);
-        AccountStatus status = new AccountStatus();
-        status.setName("Создан");
-        Account account = new Account();
-        account.setFio("Макаров Сергей Андреевич");
-        account.setRegistrationDate(new Date());
-        account.setStatus(status);
-        account.setBankAccount(bankAccount);
-        accountsService.addAccountAndBankAccount(account);
-        return "tested";
+    public void experiment1() {
+        accountsService.experiment1();
+    }
+    
+    public void experiment2() {
+        accountsService.experiment2();
+    }
+    
+    public void experiment3() {
+        accountsService.experiment3();
+    }
+    
+    public void experiment4() {
+        accountsService.experiment4();
+    }
+    
+    public void experiment5() {
+        accountsService.experiment5();
     }
 }

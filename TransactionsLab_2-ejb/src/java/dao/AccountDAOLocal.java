@@ -7,8 +7,9 @@ import models.AccountStatus;
 
 @Local
 public interface AccountDAOLocal {
+    void flush();
     void createAccount(Account account);
+    void createAccountWithRollback(Account account);
     List<Account> getAllAccounts();
-    void removeAccount(Account account);
     AccountStatus getStatusByName(String statusName);
 }
