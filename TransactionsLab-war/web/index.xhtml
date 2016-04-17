@@ -8,6 +8,11 @@
         <h:outputStylesheet name="css/style.css"/>
     </h:head>
     <h:body>
+        <div id="header">
+            <h1>
+                <h:outputText value="JTA - транзакции это просто"/>
+            </h1>
+        </div>
         <div id="main">
             <h:form>
                 <h:dataTable value="#{controller.allAccounts}" var="item" class="data_table">
@@ -39,14 +44,24 @@
                     </h:column>
                 </h:dataTable>
                 <hr/>
-                <h:panelGrid>
+                <h:panelGrid columns="3" class="experiments_table">
+                    <f:facet name="header">Эксперименты</f:facet>
+                    <h:outputText value="1"/>
+                    <h:outputText value="Дать контейнеру закончить транзакцию подтверждением и убедиться, что обновления зафиксированы."/>
                     <h:commandButton action="#{controller.experiment1()}" value="Эксперимент 1" class="button"/>
+                    <h:outputText value="2"/>
+                    <h:outputText value="Закончить транзакцию откатом в сессионном фасаде для первой базы данных и убедиться, что обновления отменены."/>
                     <h:commandButton action="#{controller.experiment2()}" value="Эксперимент 2" class="button"/>
+                    <h:outputText value="3"/>
+                    <h:outputText value="Закончить транзакцию откатом, выбросив системное исключение EJBException в сессионном фасаде для второй базы данных после обновления источника данных, и убедиться, что обновления отменены."/>
                     <h:commandButton action="#{controller.experiment3()}" value="Эксперимент 3" class="button"/>
+                    <h:outputText value="4"/>
+                    <h:outputText value="Аналогичный п.2, но обновление второй базы данных должно выполняться вне контекста транзакции, продемонстрировать результат эксперимента."/>
                     <h:commandButton action="#{controller.experiment4()}" value="Эксперимент 4" class="button"/>
+                    <h:outputText value="5"/>
+                    <h:outputText value="Аналогичный п.3, но обновление первой базы данных должно выполняться в контексте новой транзакции, продемонстрировать результат эксперимента."/>
                     <h:commandButton action="#{controller.experiment5()}" value="Эксперимент 5" class="button"/>
                 </h:panelGrid>
-
             </h:form>
         </div>
     </h:body>

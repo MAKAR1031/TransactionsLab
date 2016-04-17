@@ -2,6 +2,8 @@ package dao;
 
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import models.BankAccount;
@@ -31,5 +33,17 @@ public class BankDAO implements BankDAOLocal {
     public void createBankAccountWithException(BankAccount account) {
         em.persist(account);
         throw new EJBException("Упс...");
+    }
+
+    @Override
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public void createBankAccountWithNewTransaction(BankAccount account) {
+        em.persist(account);
+    }
+
+    @Override
+    @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+    public void createBankAccountWithoutTransaction(BankAccount account) {
+        em.persist(account);
     }
 }

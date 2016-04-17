@@ -5,9 +5,7 @@ import dao.BankDAOLocal;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
-import javax.annotation.Resource;
 import javax.ejb.EJB;
-import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import models.Account;
 import models.AccountStatus;
@@ -20,8 +18,6 @@ public class AccountsService implements AccountsServiceLocal {
     private AccountDAOLocal accountDAO;
     @EJB
     private BankDAOLocal bankDAO;
-    @Resource
-    private SessionContext sc;
 
     @Override
     public List<Account> getAllAccounts() {
@@ -32,10 +28,6 @@ public class AccountsService implements AccountsServiceLocal {
         return accounts;
     }
 
-
-    /*
-        Дать контейнеру закончить транзакцию подтверждением и убедиться, что обновления зафиксированы.
-     */
     @Override
     public void experiment1() {
         Account account = createRandomAccount();
@@ -63,17 +55,27 @@ public class AccountsService implements AccountsServiceLocal {
         bankDAO.createBankAccountWithException(bankAccount);
         bankDAO.flush();
         account.setIdBankAccount(bankAccount.getId());
-        accountDAO.createAccountWithRollback(account);
+        accountDAO.createAccount(account);
     }
 
     @Override
     public void experiment4() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Account account = createRandomAccount();
+        BankAccount bankAccount = account.getBankAccount();
+        bankDAO.createBankAccountWithoutTransaction(bankAccount);
+        bankDAO.flush();
+        account.setIdBankAccount(bankAccount.getId());
+        accountDAO.createAccountWithRollback(account);
     }
 
     @Override
     public void experiment5() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Account account = createRandomAccount();
+        BankAccount bankAccount = account.getBankAccount();
+        bankDAO.createBankAccountWithNewTransaction(bankAccount);
+        bankDAO.flush();
+        account.setIdBankAccount(bankAccount.getId());
+        accountDAO.createAccountWithException(account);
     }
 
     private Account createRandomAccount() {

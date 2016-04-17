@@ -6,9 +6,21 @@ body {
     background-color: #f3f1c7;
 }
 
+#header {
+    width: 100%;
+    position: fixed;
+    padding-left: 15px;
+    top: 0;
+    left: 0;
+    background-color: #3333ff;
+    color: snow;
+    box-shadow: 7px 7px 1px black;
+    transition: all 0.3s;
+}
+
 #main {
     width: 85%;
-    margin: 50px auto;
+    margin: 120px auto;
     padding: 20px;
     box-shadow: 5px 5px 7px lightgray;
     background-color: #99c2df;
@@ -19,6 +31,7 @@ body {
     width: 90%;
     margin: 0 auto;
     text-align: center;
+    border: 1px solid gray;
 }
 
 .data_table tr th {
@@ -32,13 +45,39 @@ body {
 
 .data_table tr td{
     padding: 5px;
+    background-color: snow;
+    transition: all 0.5s;
 }
 
 .data_table tr:nth-child(2n) td {
     background-color: lightblue;
 }
 
+.data_table tr:hover td {
+    background-color: #b7ffa5;
+}
+
+.experiments_table {
+    border-collapse: collapse;
+    width: 90%;
+    margin: 15px auto;
+}
+
+.experiments_table tr td {
+    border: 1px solid gray;
+    padding: 3px;
+}
+
 .button {
-    border: none;
+    border: 1px solid gray;;
     outline: none;
+    padding: 7px;
+    transition: all 0.5s;
+    font-size: 1.1em;
+}
+
+.button:hover {
+    background-color: darkblue;
+    cursor: pointer;
+    color: snow;
 }

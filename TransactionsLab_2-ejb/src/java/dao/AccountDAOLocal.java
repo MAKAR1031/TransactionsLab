@@ -10,6 +10,7 @@ public interface AccountDAOLocal {
     void flush();
     void createAccount(Account account);
     void createAccountWithRollback(Account account);
+    public void createAccountWithException(Account account);
     List<Account> getAllAccounts();
     AccountStatus getStatusByName(String statusName);
 }

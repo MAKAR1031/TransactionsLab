@@ -8,5 +8,7 @@ public interface BankDAOLocal {
     void flush();
     void createBankAccount(BankAccount account);
     void createBankAccountWithException(BankAccount account);
+    void createBankAccountWithoutTransaction(BankAccount account);
+    public void createBankAccountWithNewTransaction(BankAccount account);
     BankAccount getBankAccountById(int id);
 }
