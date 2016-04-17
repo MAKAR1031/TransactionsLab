@@ -29,6 +29,11 @@ public class AccountsService implements AccountsServiceLocal {
     }
 
     @Override
+    public List<BankAccount> getAllBankAccounts() {
+        return bankDAO.getAllBankAccounts();
+    }
+
+    @Override
     public void experiment1() {
         Account account = createRandomAccount();
         BankAccount bankAccount = account.getBankAccount();

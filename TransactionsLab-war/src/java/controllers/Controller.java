@@ -5,6 +5,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import models.Account;
+import models.BankAccount;
 import services.AccountsServiceLocal;
 
 @Named
@@ -16,6 +17,10 @@ public class Controller {
 
     public List<Account> getAllAccounts() {
         return accountsService.getAllAccounts();
+    }
+    
+    public List<BankAccount> getAllBankAccounts() {
+        return accountsService.getAllBankAccounts();
     }
     
     public void experiment1() {

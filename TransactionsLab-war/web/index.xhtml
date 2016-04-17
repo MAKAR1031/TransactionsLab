@@ -15,6 +15,9 @@
         </div>
         <div id="main">
             <h:form>
+                <h2>
+                    <h:outputText value="Аккаунты и банковские данные"/>
+                </h2>
                 <h:dataTable value="#{controller.allAccounts}" var="item" class="data_table">
                     <h:column>
                         <f:facet name="header">
@@ -41,6 +44,23 @@
                         <h:outputText value="#{item.registrationDate}">
                             <f:convertDateTime pattern="dd.MM.yyyy"/>
                         </h:outputText>
+                    </h:column>
+                </h:dataTable>
+                <h2>
+                    <h:outputText value="Банковские аккаунты"/>
+                </h2>
+                <h:dataTable value="#{controller.allBankAccounts}" var="item" class="data_table">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Id"/>
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Количество средств"/>
+                        </f:facet>
+                        <h:outputText value="#{item.money}"/>
                     </h:column>
                 </h:dataTable>
                 <hr/>

@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.List;
 import javax.ejb.Local;
 import models.BankAccount;
 
@@ -11,4 +12,5 @@ public interface BankDAOLocal {
     void createBankAccountWithoutTransaction(BankAccount account);
     public void createBankAccountWithNewTransaction(BankAccount account);
     BankAccount getBankAccountById(int id);
+    List<BankAccount> getAllBankAccounts();
 }
