@@ -14,7 +14,7 @@ body {
     left: 0;
     background-color: #2772ae;
     color: snow;
-    box-shadow: 7px 7px 1px black;
+    box-shadow: 0 5px 3px black;
     transition: all 0.3s;
     text-shadow: 2px 2px 3px black;
 }
@@ -81,4 +81,10 @@ body {
     background-color: darkblue;
     cursor: pointer;
     color: snow;
+}
+
+span.note {
+    border-radius: 7px;
+    background-color: #f8ff68;
+    padding: 0 3px;
 }
